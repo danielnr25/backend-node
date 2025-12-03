@@ -1,0 +1,39 @@
+/*
+   CREACION DE UN SERVIDOR NATIVO DE NODE JS
+
+*/
+
+
+const http = require('http');
+
+const host = '127.0.0.1';
+const port = '3000';
+
+// crear servidor
+const server = http.createServer((req, res)=>{
+   if(req.method==='GET' && req.url ==='/'){
+      res.writeHead(200,{'Content-Type': 'application/json'});
+      const respuesta = {
+         mensaje: 'Servidor Node.js nativo funcionando correctamente',
+         ruta:req.url,
+         metodo:req.method,
+      }
+      res.end(JSON.stringify(respuesta))
+   }
+
+   if(req.method==='GET' && req.url==='/saludo'){
+      res.writeHead(200,{'Content-Type':'application/json'})
+      res.end(JSON.stringify({msg:'HOLA DESDE /SALUDO'}))
+      return;
+   }
+
+   res.writeHead(404,{'Content-Type':'application/json'})
+   res.end(JSON.stringify({error:'Ruta no encontrada'}))
+
+});
+
+// iniciar servidor
+server.listen(port,host,()=>{
+   console.log(`Servidor corriendo en http://${host}:${port}`)
+})
+
