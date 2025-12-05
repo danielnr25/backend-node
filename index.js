@@ -1,17 +1,16 @@
+require('module-alias/register');
 const express = require('express');
+require('dotenv').config();
+
+// CONFIGURACION DE RUTAS
+const categoryRoutes = require('@routes/category.routes')
 
 const server = express();
-const port = '3000';
 
-server.get('/saludo', (req, res)=>{
-   const respuesta = {
-      mensaje:'Servidor de express funcionando correctamente',
-      ruta:req.url,
-      metodo:req.method
-   }
-   res.json(respuesta)
-})
+// RUTAS PRINCIPALES
+server.use('/api/categories',categoryRoutes); // http://localhost:3000/api/categories
 
-server.listen(port,()=>{
-   console.log(`Servidor corriendo en http://localhost:${port}`)
+const PORT = process.env.PORT || 8000;
+server.listen(PORT,()=>{
+   console.log(`Servidor corriendo en http://localhost:${PORT}`)
 })
