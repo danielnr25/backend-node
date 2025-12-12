@@ -47,6 +47,7 @@ const ProductController = {
          return res.status(201).json({message:messages.products.createSuccess})
 
       } catch (error) {
+
          if(image_url){
             const imagePath = path.join(__dirname,'../uploads',image_url);
             if(fs.existsSync(imagePath)){
@@ -66,7 +67,7 @@ const ProductController = {
             return res.status(400).json({message:messages.products.notNullFields})
          }
 
-          if(error.message === 'VALIDATION_STRING'){
+         if(error.message === 'VALIDATION_STRING'){
             return res.status(400).json({message:messages.products.stringFields})
          }
 
