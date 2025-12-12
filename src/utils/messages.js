@@ -12,7 +12,22 @@ const messages = {
       updateError:"Error al actualizar la categoría",
       deleteSuccess:"Categoria eliminada correctamente",
       deleteError : "Error al eliminar la categoría"
-   }
+   },
+   products:{
+      getAllError: "Error al obtener los productos",
+      createSuccess: "Producto creado exitosamente",
+      createError: "Error al crear el producto",
+      missingFields: "El campo nombre, descripcion, precio, stock y la categoría son obligatorios",
+      stringFields:"El campo nombre y descripcion deben ser texto",
+      numberFields:"El campo stock y precio deben ser números y mayores a 0",
+      notNullFields:"Los campos no pueden estar vacíos o contener solo espacios",
+      notFound:"Producto no encontrada",
+      updateSuccess:"Producto actualizado correctamente",
+      updateError:"Error al actualizar el producto",
+      deleteSuccess:"Producto eliminado correctamente",
+      deleteError : "Error al eliminar el producto"
+   },
+
 
 
 }
