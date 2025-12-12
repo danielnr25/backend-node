@@ -26,11 +26,13 @@ const ProductController = {
          const cleanDescription = String(description).trim();
 
          if(!cleanName || !cleanDescription){
-            return res.status(400).json({message:messages.products.notNullFields})
+            //return res.status(400).json({message:messages.products.notNullFields})
+            throw new Error('VALIDATION_CLEAN')
          }
 
          if(typeof name !='string' || typeof description !='string'){
-            return res.status(400).json({message:messages.products.stringFields})
+            //return res.status(400).json({message:messages.products.stringFields})
+            throw new Error('VALIDATION_STRING')
          }
 
          // convertir a numeros
@@ -58,6 +60,14 @@ const ProductController = {
 
          if(error.message === 'NUMBER_ERROR'){
             return res.status(400).json({message: messages.products.numberFields});
+         }
+
+         if(error.message === 'VALIDATION_CLEAN'){
+            return res.status(400).json({message:messages.products.notNullFields})
+         }
+
+          if(error.message === 'VALIDATION_STRING'){
+            return res.status(400).json({message:messages.products.stringFields})
          }
 
          return res.status(500).json({message:messages.products.createError,error:error.message})
