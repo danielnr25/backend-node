@@ -27,6 +27,12 @@ const messages = {
       deleteSuccess:"Producto eliminado correctamente",
       deleteError : "Error al eliminar el producto"
    },
+   auth:{
+      loginSuccess: 'Inicio de sesión exitoso',
+      loginError: 'Error al iniciar sesión',
+      invalidCredentials: 'Credenciales inválidas',
+      missingFields:'Usuario y contraseña son obligatorios'
+   }
 
 
 

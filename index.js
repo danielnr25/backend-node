@@ -6,6 +6,7 @@ const path = require('path');
 // CONFIGURACION DE RUTAS
 const categoryRoutes = require('@routes/category.routes');
 const productRoutes = require('@routes/product.routes');
+const authRoutes = require('@routes/user.routes');
 
 const server = express();
 server.use(cors());
@@ -13,6 +14,7 @@ server.use(express.urlencoded({extended:true})) // middleware, formulario codifi
 server.use(express.json()); // nos permite leer los json del body (Middleware para datos del JSON)
 
 // RUTAS PRINCIPALES
+server.use('/api/auth',authRoutes)
 server.use('/api/categories',categoryRoutes); // http://localhost:3000/api/categories
 server.use('/api/products',productRoutes); // http://localhost:3000/api/product
 
