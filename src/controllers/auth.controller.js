@@ -5,6 +5,7 @@ const messages = require("@utils/messages");
 
 
 module.exports.login = async(req,res) =>{
+   
    const {username,password } = req.body // destructuracion de objeto
    try {
       const results = await UserModel.findByUsername(username); // pasando al usermodel y ejecutando la consulta

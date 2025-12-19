@@ -30,7 +30,7 @@ const messages = {
    auth:{
       loginSuccess: 'Inicio de sesión exitoso',
       loginError: 'Error al iniciar sesión',
-      invalidCredentials: 'Credenciales inválidas',
+      invalidCredentials: 'Usuario o Contraseña son incorrectos',
       missingFields:'Usuario y contraseña son obligatorios'
    }
 

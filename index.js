@@ -14,7 +14,7 @@ server.use(express.urlencoded({extended:true})) // middleware, formulario codifi
 server.use(express.json()); // nos permite leer los json del body (Middleware para datos del JSON)
 
 // RUTAS PRINCIPALES
-server.use('/api/auth',authRoutes)
+server.use('/api/auth',authRoutes); // http://localhost:3000/api/auth/login
 server.use('/api/categories',categoryRoutes); // http://localhost:3000/api/categories
 server.use('/api/products',productRoutes); // http://localhost:3000/api/product
 
