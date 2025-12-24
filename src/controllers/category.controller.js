@@ -80,7 +80,6 @@ const CategoryController = {
          return res.status(500).json({message:messages.categories.deleteError, error})
       }
    }
-
 }
 
 module.exports = CategoryController
