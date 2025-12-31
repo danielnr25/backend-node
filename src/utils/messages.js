@@ -11,7 +11,9 @@ const messages = {
       updateSuccess:"Categoria actualizado correctamente",
       updateError:"Error al actualizar la categoría",
       deleteSuccess:"Categoria eliminada correctamente",
-      deleteError : "Error al eliminar la categoría"
+      deleteError : "Error al eliminar la categoría",
+      getByIdError: "Error al obtener la categoría por ID",
+      searchNoResults: "No se encontraron categorías que coincidan con la búsqueda"
    },
    products:{
       getAllError: "Error al obtener los productos",

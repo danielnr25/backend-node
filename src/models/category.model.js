@@ -1,12 +1,24 @@
 const database = require('@config/db');
 
 const CategoryModel = {
-   getAll: async () => {
+   getAll: async (limit, offset) => {
       try {
-         const [results] = await database.query("SELECT id,nombre,descripcion FROM categorias_productos WHERE deleted_at IS NULL");
-         return results;
+         const [results] = await database.query("SELECT id,nombre,descripcion FROM categorias_productos WHERE deleted_at IS NULL LIMIT ? OFFSET ?",[limit,offset]);
+         
+         const [countResult] = await database.query("SELECT COUNT(*) AS total FROM categorias_productos WHERE deleted_at IS NULL");
+         const total = countResult[0].total;
+
+         return {results,total};
       } catch (error) {
          throw error; // si hay error que nos muestre para poder verificar
+      }
+   },
+   findById: async (id) => {
+      try {
+         const [results] = await database.query("SELECT id,nombre,descripcion FROM categorias_productos WHERE id = ? AND deleted_at IS NULL", [id]);
+         return results;
+      } catch (error) {
+         throw error;
       }
    },
    create: async(name,description) =>{
@@ -33,7 +45,15 @@ const CategoryModel = {
       } catch (error) {
          throw error;
       }
-   }
+   },
+   search: async (name) => {
+      try {
+         const [results] = await database.query("SELECT id,nombre,descripcion FROM `categorias_productos` WHERE nombre LIKE ? AND deleted_at IS NULL", [`%${name}%`]);
+         return results;
+      } catch (error) {
+         throw error;
+      }
+   },
 
 }
 
