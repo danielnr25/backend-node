@@ -79,6 +79,7 @@ const ProductController = {
             }
 
             const newProduct = await ProductModel.create(name, description, parsedPrice, parsedCategory, image_url, parsedStock)
+            
             return res.status(201).json({ message: messages.products.createSuccess })
         } catch (error) {
 
@@ -130,7 +131,7 @@ const ProductController = {
                 saveImageUrl = currentProduct[0].imagen;
             }
 
-            const updatedProduct = await Product.update(id, name, description, price, category_id, stock, saveImageUrl); // Llamamos al modelo para actualizar el producto
+            const updatedProduct = await ProductModel.update(id, name, description, price, category_id, stock, saveImageUrl); // Llamamos al modelo para actualizar el producto
             if (updatedProduct.affectedRows === 0) {
                 return res.status(404).json({ message: messages.products.notFound }); // Si no se encuentra, respondemos con 404
             }

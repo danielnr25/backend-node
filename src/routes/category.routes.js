@@ -5,6 +5,9 @@ const CategoryController = require('@controllers/category.controller');
 // realizar la busqueda de categorias
 router.get('/search', CategoryController.searchCategory)
 
+// Obtener todas las categorias para seleccionar un combo
+router.get('/allcategories', CategoryController.comboCategories)
+
 // obtener todas las categorias
 router.get('/',CategoryController.getAllCategories);
 

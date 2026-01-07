@@ -120,6 +120,14 @@ const CategoryController = {
          res.status(500).json({ message: messages.categories.searchError, error }); // Manejo de errores
       }
    },
+   comboCategories: async (req, res) => {
+      try {
+         const results = await CategoryModel.getAllCombo();
+         res.status(200).json(results);
+      } catch (error) {
+         res.status(500).json({ message: messages.categories.getAllError, error });
+      }
+   }
 }
 
 module.exports = CategoryController

@@ -13,7 +13,8 @@ const messages = {
       deleteSuccess:"Categoria eliminada correctamente",
       deleteError : "Error al eliminar la categoría",
       getByIdError: "Error al obtener la categoría por ID",
-      searchNoResults: "No se encontraron categorías que coincidan con la búsqueda"
+      searchNoResults: "No se encontraron categorías que coincidan con la búsqueda",
+      searchError: "Error al buscar la categoría"
    },
    products:{
       getAllError: "Error al obtener los productos",
@@ -27,7 +28,9 @@ const messages = {
       updateSuccess:"Producto actualizado correctamente",
       updateError:"Error al actualizar el producto",
       deleteSuccess:"Producto eliminado correctamente",
-      deleteError : "Error al eliminar el producto"
+      deleteError : "Error al eliminar el producto",
+      searchNoResults: "No se encontraron productos que coincidan con la búsqueda",
+      searchError: "Error al buscar el producto"
    },
    auth:{
       loginSuccess: 'Inicio de sesión exitoso',

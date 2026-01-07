@@ -54,6 +54,14 @@ const CategoryModel = {
          throw error;
       }
    },
+    getAllCombo: async () => {
+      try {
+         const [results] = await database.query("SELECT id,nombre FROM categorias_productos WHERE deleted_at IS NULL");
+         return results;
+      } catch (error) {
+         throw error;
+      }
+   }
 
 }
 

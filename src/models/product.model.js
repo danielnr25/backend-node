@@ -30,12 +30,11 @@ const ProductModel = {
             throw error;
         }
     },
-    update: async (id, name, description, price, category_id, image_url) => {
+    update: async (id, name, description, price, category_id,stock,image_url) => {
         try {
             const [results] = await database.query("UPDATE productos SET nombre = ?, precio = ?, descripcion = ?, stock = ?, imagen = ?,categoria_id = ?, updated_at = NOW() WHERE id = ?",
                 [name, price, description, stock, image_url, category_id, id]
             );
-
             return results; // Retorna los resultados de la actualización
         } catch (error) {
             throw error; // Si hay un error lo lanzamos
