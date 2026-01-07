@@ -80,7 +80,6 @@ const ProductController = {
 
             const newProduct = await ProductModel.create(name, description, parsedPrice, parsedCategory, image_url, parsedStock)
             return res.status(201).json({ message: messages.products.createSuccess })
-
         } catch (error) {
 
             if (image_url) {
@@ -108,8 +107,6 @@ const ProductController = {
 
             return res.status(500).json({ message: messages.products.createError, error: error.message })
         }
-
-
     },
     updateProduct: async (req, res) => {
         const { id } = req.params; // Obtenemos el ID de la categoría de los parámetros de la ruta
@@ -139,7 +136,7 @@ const ProductController = {
             }
             res.status(200).json({ message: messages.products.updateSuccess, updatedProduct });
         } catch (error) {
-            res.status(500).json({ message: messages.products.updateError, error }); // Manejo de errores
+            res.status(500).json({ message: messages.products.updateError, error:error.message }); // Manejo de errores
         }
     },
     // Eliminar un producto
