@@ -8,7 +8,16 @@ const UserModel = {
       } catch (error) {
          throw error;
       }
-   }
+   },
+    save: async function(){
+        try {
+            const [results] = await database.query("INSERT INTO usuarios (username,email,password,tipo_usuario_id, created_at, updated_at) VALUES (?,?,?,?,NOW(),NOW())",
+            [this.username, this.email, this.password, this.tipo_usuario_id]);
+            return results;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 

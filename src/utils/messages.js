@@ -36,7 +36,9 @@ const messages = {
       loginSuccess: 'Inicio de sesión exitoso',
       loginError: 'Error al iniciar sesión',
       invalidCredentials: 'Usuario o Contraseña son incorrectos',
-      missingFields:'Usuario y contraseña son obligatorios'
+      missingFields:'Usuario y contraseña son obligatorios',
+      registerSuccess: 'Registro exitoso',
+      registerError: 'Error al registrar el usuario'
    }
 
 

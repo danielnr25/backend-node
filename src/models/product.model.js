@@ -3,7 +3,7 @@ const database = require('@config/db');
 const ProductModel = {
     getAll: async (limit, offset) => {
         try {
-            const [results] = await database.query("SELECT pr.nombre,pr.id,pr.precio,pr.descripcion,pr.imagen,pr.stock,cp.nombre as categorianombre FROM `productos` pr LEFT JOIN categorias_productos cp ON pr.categoria_id = cp.id WHERE pr.deleted_at IS NULL LIMIT ? OFFSET ?", [limit, offset]); // Traemos todos los productos donde deleted_at es NULL
+            const [results] = await database.query("SELECT pr.nombre,pr.id,pr.precio,pr.descripcion,pr.imagen,pr.stock,cp.nombre as categorianombre, pr.categoria_id FROM `productos` pr LEFT JOIN categorias_productos cp ON pr.categoria_id = cp.id WHERE pr.deleted_at IS NULL LIMIT ? OFFSET ?", [limit, offset]); // Traemos todos los productos donde deleted_at es NULL
 
             const [countResult] = await database.query("SELECT COUNT(pr.id) AS total FROM productos pr LEFT JOIN categorias_productos cp ON pr.categoria_id = cp.id WHERE pr.deleted_at IS NULL");
 
