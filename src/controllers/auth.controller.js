@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const messages = require("@utils/messages");
 
-
 module.exports.login = async(req,res) =>{
    
    const {username,password } = req.body // destructuracion de objeto
@@ -34,6 +33,8 @@ module.exports.login = async(req,res) =>{
 }
 
 module.exports.register = async(req,res) =>{
+    // req (request): la información que viene del cliente. (req.body)
+    // res (response): las respuesta que devuelve el servidor al cliente
    const {email,username,password} = req.body;
    try { 
         const hashedPassword = await bcrypt.hash(password,10); // encriptar la contraseña
