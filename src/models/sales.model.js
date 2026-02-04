@@ -60,6 +60,17 @@ const SaleModel = {
         } finally {
             connection.release(); // Liberamos la conexión
         }
+    },
+    findByUser: async (id) => {
+        try {
+            const [results] = await database.query("SELECT v.id AS venta_id, v.total, v.fecha, us.username FROM ventas v LEFT JOIN usuarios us ON us.id = v.usuario_id WHERE v.deleted_at IS NULL AND v.usuario_id = ?", [id]);
+            // Obtenemos todas las ventas de un usuario
+            const [details] = await database.query("SELECT dv.id, pr.nombre as producto, pr.imagen, dv.cantidad, dv.precio_unitario, dv.subtotal, dv.venta_id FROM detalle_ventas dv LEFT JOIN productos pr ON pr.id = dv.producto_id LEFT JOIN ventas v ON v.id = dv.venta_id WHERE v.deleted_at IS NULL AND v.usuario_id = ?", [id]);
+            // Obtenemos los detalles de la venta
+            return { results, details };
+        } catch (error) {
+            throw error; // Si hay un error lo lanzamos
+        }
     }
 
 };

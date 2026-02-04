@@ -19,9 +19,12 @@ const SaleController = {
                     itemsPerPage: limit
                 }
             };
+            if (results.length === 0) {
+                return res.status(200).json({ message: messages.sales.noSalesFound }); // Si no se encuentra, respondemos con 404
+            }
             res.status(200).json(sales); // Respondemos con las ventas en formato JSONx
         } catch (error) {
-            res.status(500).json({message:messages.sales.getAllError, error:error.message }); // Manejo de errores
+            res.status(500).json({ message: messages.sales.getAllError, error: error.message }); // Manejo de errores
         }
     },
     getSaleById: async (req, res) => {
@@ -33,7 +36,7 @@ const SaleController = {
             }
             res.status(200).json(sale);
         } catch (error) {
-            res.status(500).json({ message: messages.sales.getByIdError, error:error.message }); // Manejo de errores
+            res.status(500).json({ message: messages.sales.getByIdError, error: error.message }); // Manejo de errores
         }
     },
     createSale: async (req, res) => {
@@ -45,7 +48,28 @@ const SaleController = {
             const result = await SalesModel.create(usuario_id, total, detalles); // Llamamos al modelo para crear la venta
             res.status(201).json({ message: messages.sales.createSuccess, saleId: result.venta_id }); // Respondemos con éxito
         } catch (error) {
-            res.status(500).json({ message: messages.sales.createError, error:error.message }); // Manejo de errores
+            res.status(500).json({ message: messages.sales.createError, error: error.message }); // Manejo de errores
+        }
+    },
+    getSalesByUser: async (req, res) => {
+        const { id } = req.params; // Obtenemos el ID de los parámetros de la ruta
+        try {
+            const sales = await SalesModel.findByUser(id); // Llamamos al modelo para obtener las ventas por ID
+            if (sales.length === 0) {
+                return res.status(404).json({ message: messages.sales.notFound }); // Si no se encuentra, respondemos con 404
+            }
+            const results = sales.results.map(sale => {
+                const details = sales.details.filter(detail => detail.venta_id === sale.venta_id).map(detail => {
+                    return {
+                        ...detail,
+                        imagen: process.env.HOST + '/uploads/' + detail.imagen
+                    };
+                });
+                return { ...sale, details };
+            });
+            res.status(200).json(results);
+        } catch (error) {
+            res.status(500).json({ message: messages.sales.getByIdError, error: error.message }); // Manejo de errores
         }
     }
 }

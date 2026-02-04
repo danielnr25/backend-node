@@ -46,15 +46,13 @@ const messages = {
         createSuccess: "Venta creada exitosamente",
         createError: "Error al crear la venta",
         missingFields: "Los campos usuario_id, total y detalles son obligatorios",
-        notFound: "Venta no encontrada"
+        notFound: "No se encontraron compras",
+        noSalesFound: "No se encontraron ventas para el rango de fechas seleccionado"
     },
-    report:{
+    report: {
         getSalesReportError: 'Error al obtener el reporte de ventas',
         getSalesProductReportError: 'Error al obtener el reporte de productos vendidos'
     }
-
-
-
 }
 
 module.exports = messages

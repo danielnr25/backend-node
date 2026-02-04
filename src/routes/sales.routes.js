@@ -11,4 +11,7 @@ router.get('/:id', SaleController.getSaleById);
 // Crear una nueva venta
 router.post('/', SaleController.createSale);
 
+// Obtener ventas por usuario
+router.get('/user/:id', SaleController.getSalesByUser);
+
 module.exports = router;
